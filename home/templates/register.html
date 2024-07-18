@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %} Register Page {% endblock %}
+{% block registeractive %} active {% endblock registeractive %}
+{% block css %}
+{% endblock %}
+{% block body %}
+{% if messages %}
+<div align="center">
+    {% for message in messages %}
+    {% if message.tags == 'success' %}
+    <div class="alert alert-success" role="alert">
+        {{ message }}
+    </div>
+    {% elif message.tags == 'warning' %}
+    <div class="alert alert-warning" role="alert">
+        {{ message }}
+    </div>
+    {% else %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endif %}
+<form action="/register/" method="POST"> {% csrf_token %}
+    <div class="container mt-5">
+        <h2>Register</h2>
+        <br>
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username">
+        </div>
+        <div class="mb-3">
+            <label for="first_nam" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="first_name" name="first_name">
+        </div>
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="last_name" name="last_name">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="mb-3">
+            <label for="password1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password1" name="password1">
+        </div>
+        <div class="mb-3">
+            <label for="password2" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="password2" name="password2">
+        </div>
+        <div class="mb-3">
+            <p>Already have an account ? <a href="/login/">Login</a> </p>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <br>
+        <p>&emsp;</p>
+    </div>
+</form>
+{% endblock %}

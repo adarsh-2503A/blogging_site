@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %} Edit Page {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+{% if searched %}
+<div class="container mt-5 mb-3">
+  {% if blogs %}
+  <div class="row">
+    {% for blog in blogs %}
+    <div class="col-lg-4 my-4">
+      <div class="card shadow" style="width: 20rem; height: 33rem;">
+        <img src="/media/{{blog.image}}" class="card-img-top" alt="..." height="250px">
+        <div class="card-body">
+          <h5 class="card-title">{{blog.title}} <br><small>by {{blog.author}}</small></h5>
+          <p class="card-text">{{blog.content| truncatechars:210}}</p>
+          <a href="/blog/{{blog.slug}}" class="btn btn-primary">Read More {% if user.is_superuser %}<a
+              href="/delete_blog_post/{{blog.slug}}/" class="btn btn-danger mx-4">Delete Blog</a>{% endif %}</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="container" style="margin-top: 10%;margin-left: 20%;">
+    <img src="https://png.pngtree.com/png-clipart/20221228/original/pngtree-no-results-png-image_8816185.png"
+      style="width:200px;height:200px;align-content: center;">
+    <h1
+      style="font-family: 'Hind', sans-serif; font-family: 'Josefin Sans', sans-serif; font-family: 'Roboto Condensed', sans-serif; font-family: 'Ubuntu', sans-serif;">
+      Oops!
+      No Results were found !!! </h1>
+  </div>
+  {% endif %}
+</div>
+{% else %}
+<div class="container" style="margin-top: 10%;margin-left: 30%;">
+  <img src="https://png.pngtree.com/png-clipart/20221228/original/pngtree-no-results-png-image_8816185.png"
+    style="width:200px;height:200px;align-content: center;">
+  <h1
+    style="font-family: 'Hind', sans-serif; font-family: 'Josefin Sans', sans-serif; font-family: 'Roboto Condensed', sans-serif; font-family: 'Ubuntu', sans-serif;">
+    Enter something to search !!!</h1>
+</div>
+{% endif %}
+{% endblock %}
